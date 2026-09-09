@@ -1,0 +1,90 @@
+import type { LucideIcon } from 'lucide-react';
+import type { ButtonHTMLAttributes, FormEvent, InputHTMLAttributes, ReactNode, SelectHTMLAttributes } from 'react';
+
+export type ThemeMode = 'light' | 'dark';
+
+export type WaitlistRole = 'pasajero' | 'conductor';
+
+export interface NavLink {
+  label: string;
+  href: string;
+}
+
+export interface FeatureItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: LucideIcon;
+}
+
+export interface SocialLink {
+  id: string;
+  label: string;
+  href: string;
+  icon: LucideIcon;
+}
+
+export interface WaitlistFormData {
+  name: string;
+  email: string;
+  role: WaitlistRole | '';
+}
+
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  children: ReactNode;
+}
+
+export interface FeatureCardProps {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  index?: number;
+}
+
+export interface ThemeToggleProps {
+  className?: string;
+}
+
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  label: string;
+  error?: string;
+}
+
+export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+  label: string;
+  options: ReadonlyArray<{ value: string; label: string }>;
+  error?: string;
+}
+
+export interface HeaderProps {
+  links: ReadonlyArray<NavLink>;
+}
+
+export interface HeroProps {
+  onCtaClick: () => void;
+}
+
+export interface FeaturesProps {
+  items: ReadonlyArray<FeatureItem>;
+}
+
+export interface WaitlistProps {
+  onSubmit: (data: WaitlistFormData) => void;
+}
+
+export interface FooterProps {
+  socialLinks: ReadonlyArray<SocialLink>;
+}
+
+export interface LayoutProps {
+  children: ReactNode;
+}
+
+export interface ThemeContextValue {
+  theme: ThemeMode;
+  toggleTheme: () => void;
+}
+
+export type WaitlistSubmitHandler = (event: FormEvent<HTMLFormElement>) => void;
