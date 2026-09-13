@@ -8,9 +8,10 @@ export function Footer({ socialLinks }: FooterProps) {
     <footer className="border-t border-line-light bg-surface-light dark:border-line-dark dark:bg-surface-dark">
       <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-10 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
         <div className="space-y-3">
-          <Logo />
+          <Logo size="sm" />
           <p className="max-w-sm text-sm text-ink-secondary-light dark:text-ink-secondary-dark">
-            Construyendo el futuro de la movilidad urbana con Trazza.
+            Innovación · Tecnología · Crecimiento. Construyendo el futuro de la movilidad con
+            Trazza.
           </p>
         </div>
 

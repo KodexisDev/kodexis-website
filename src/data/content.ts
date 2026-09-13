@@ -1,40 +1,41 @@
-import { AtSign, Globe, Headphones, MapPinned, Share2, ShieldCheck, Wallet } from 'lucide-react';
+import { AtSign, CarFront, Globe, MapPin, Route, Share2, Users } from 'lucide-react';
 import type { FeatureItem, NavLink, SocialLink } from '../types';
 
 export const NAV_LINKS: ReadonlyArray<NavLink> = [
   { label: 'Producto', href: '#producto' },
+  { label: 'Demo', href: '#demo' },
   { label: 'Características', href: '#caracteristicas' },
   { label: 'Lista de espera', href: '#lista-espera' },
 ];
 
 export const FEATURES: ReadonlyArray<FeatureItem> = [
   {
+    id: 'connect',
+    title: 'Conéctate en segundos',
+    description:
+      'Solicita un viaje al instante y encuentra conductores cercanos sin fricción ni esperas innecesarias.',
+    icon: MapPin,
+  },
+  {
     id: 'safety',
-    title: 'Viajes seguros',
+    title: 'Viaja seguro',
     description:
-      'Verificación de identidad, seguimiento en tiempo real y protocolos de seguridad pensados para cada trayecto.',
-    icon: ShieldCheck,
+      'Seguimiento en tiempo real, verificación de identidad y protocolos pensados para cada trayecto.',
+    icon: CarFront,
   },
   {
-    id: 'payments',
-    title: 'Pagos transparentes',
+    id: 'reach',
+    title: 'Llega más lejos',
     description:
-      'Tarifas claras antes de confirmar, sin sorpresas al llegar. Historial completo y comprobantes al instante.',
-    icon: Wallet,
+      'Rutas dinámicas que optimizan tiempos y te llevan a tu destino con claridad en cada kilómetro.',
+    icon: Route,
   },
   {
-    id: 'support',
-    title: 'Soporte 24/7',
+    id: 'city',
+    title: 'Movemos tu ciudad',
     description:
-      'Asistencia humana cuando la necesites. Resolución rápida para pasajeros y conductores, a cualquier hora.',
-    icon: Headphones,
-  },
-  {
-    id: 'routing',
-    title: 'Rutas inteligentes',
-    description:
-      'Optimización de trayectos con datos en vivo para reducir tiempos de espera y mejorar la experiencia urbana.',
-    icon: MapPinned,
+      'Una red de pasajeros y conductores que transforma la movilidad urbana con tecnología Kodexis.',
+    icon: Users,
   },
 ];
 

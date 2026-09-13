@@ -47,6 +47,31 @@ export interface ThemeToggleProps {
   className?: string;
 }
 
+export interface BrandLogoProps {
+  className?: string;
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+}
+
+export interface TrazzaMarkProps {
+  className?: string;
+  size?: 'sm' | 'md' | 'lg';
+  showTagline?: boolean;
+}
+
+export interface DemoVideoProps {
+  src: string;
+  poster?: string;
+  className?: string;
+  label?: string;
+}
+
+export interface ProductDemoProps {
+  videoSrc: string;
+  posterSrc: string;
+  brandImageSrc: string;
+}
+
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   error?: string;

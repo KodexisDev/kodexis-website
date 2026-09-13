@@ -14,10 +14,10 @@ export function Features({ items }: FeaturesProps) {
             id="features-heading"
             className="font-display text-3xl font-semibold text-ink-primary-light sm:text-4xl dark:text-ink-primary-dark"
           >
-            Características de Trazza
+            Valores de Trazza
           </h2>
           <p className="mt-3 text-base text-ink-secondary-light dark:text-ink-secondary-dark">
-            Todo lo que necesitas para moverte con confianza, claridad y control en cada viaje.
+            Conéctate, viaja seguro, llega más lejos y mueve tu ciudad con rutas dinámicas.
           </p>
         </div>
 

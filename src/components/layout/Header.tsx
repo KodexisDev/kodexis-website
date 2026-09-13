@@ -36,7 +36,7 @@ export function Header({ links = NAV_LINKS }: HeaderProps) {
           : 'bg-transparent',
       ].join(' ')}
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-[4.25rem] max-w-6xl items-center justify-between px-4 sm:h-18 sm:px-6 lg:px-8">
         <Logo />
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Principal">

@@ -37,14 +37,20 @@ export default {
           danger: '#DC2626',
           info: '#2563EB',
         },
+        kodexis: {
+          navy: '#0D2A4F',
+        },
       },
       fontFamily: {
-        display: ['"Syne"', 'sans-serif'],
+        display: ['"Montserrat"', 'sans-serif'],
         body: ['"DM Sans"', 'sans-serif'],
       },
       boxShadow: {
         soft: '0 12px 40px -16px rgba(7, 20, 33, 0.18)',
         glow: '0 0 0 4px rgba(255, 106, 0, 0.18)',
+      },
+      spacing: {
+        18: '4.5rem',
       },
       keyframes: {
         'fade-up': {
