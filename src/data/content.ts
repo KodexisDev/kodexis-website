@@ -6,6 +6,7 @@ export const NAV_LINKS: ReadonlyArray<NavLink> = [
   { label: 'Demo', href: '#demo' },
   { label: 'Características', href: '#caracteristicas' },
   { label: 'Lista de espera', href: '#lista-espera' },
+  { label: 'PQRS', href: '#pqrs' },
 ];
 
 export const FEATURES: ReadonlyArray<FeatureItem> = [

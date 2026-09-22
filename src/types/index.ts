@@ -1,9 +1,18 @@
 import type { LucideIcon } from 'lucide-react';
-import type { ButtonHTMLAttributes, FormEvent, InputHTMLAttributes, ReactNode, SelectHTMLAttributes } from 'react';
+import type {
+  ButtonHTMLAttributes,
+  FormEvent,
+  InputHTMLAttributes,
+  ReactNode,
+  SelectHTMLAttributes,
+  TextareaHTMLAttributes,
+} from 'react';
 
 export type ThemeMode = 'light' | 'dark';
 
 export type WaitlistRole = 'pasajero' | 'conductor';
+
+export type PqrsType = 'peticion' | 'queja' | 'reclamo' | 'sugerencia';
 
 export interface NavLink {
   label: string;
@@ -28,6 +37,15 @@ export interface WaitlistFormData {
   name: string;
   email: string;
   role: WaitlistRole | '';
+}
+
+export interface PqrsFormData {
+  type: PqrsType | '';
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
 }
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -83,6 +101,11 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   error?: string;
 }
 
+export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  label: string;
+  error?: string;
+}
+
 export interface HeaderProps {
   links: ReadonlyArray<NavLink>;
 }
@@ -97,6 +120,10 @@ export interface FeaturesProps {
 
 export interface WaitlistProps {
   onSubmit: (data: WaitlistFormData) => void;
+}
+
+export interface PqrsProps {
+  onSubmit: (data: PqrsFormData) => Promise<void> | void;
 }
 
 export interface FooterProps {
