@@ -34,11 +34,18 @@ En GitHub: **Settings → Secrets and variables → Actions**
 | `CI` | push / PR | `npm ci`, lint, build |
 | `Deploy GitHub Pages` | push a `main` | build + deploy a Pages |
 
+### Requisitos del plan GitHub
+
+Para orgs en plan Free, **Actions y Pages en repos privados no están disponibles**.
+Esta landing debe ser **pública** (o la org necesita GitHub Team).
+
 ### Activar GitHub Pages (una vez)
 
 1. Repo → **Settings → Pages**
 2. **Source**: GitHub Actions
 3. Tras el primer deploy en `main`, la URL queda en el environment `github-pages`
+   - Provisional: `https://kodexisdev.github.io/kodexis-website/`
+4. Con dominio custom, crea `public/CNAME` y configúralo en Settings → Pages
 
 ### Dominio personalizado
 

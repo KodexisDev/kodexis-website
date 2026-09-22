@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [main, feat/**, fix/**]
+    branches: [main, 'feat/**', 'fix/**']
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
@@ -34,7 +34,7 @@ jobs:
 
       - name: Typecheck y build
         env:
-          VITE_CONTACT_EMAIL: ${{ vars.VITE_CONTACT_EMAIL || 'contacto@kodexis.com' }}
+          VITE_CONTACT_EMAIL: ${{ vars.VITE_CONTACT_EMAIL }}
           VITE_BASE_PATH: /
         run: npm run build
 

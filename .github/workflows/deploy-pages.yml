@@ -5,6 +5,8 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Requiere que en la org/repo Actions permita elevar permisos del GITHUB_TOKEN
+# (Settings → Actions → General → Workflow permissions → Read and write).
 permissions:
   contents: read
   pages: write
@@ -35,11 +37,16 @@ jobs:
 
       - name: Build
         env:
-          # Dominio custom → base '/'. Cambiar solo si usas project pages sin CNAME.
-          VITE_BASE_PATH: ${{ vars.VITE_BASE_PATH || '/' }}
-          VITE_CONTACT_EMAIL: ${{ vars.VITE_CONTACT_EMAIL || 'contacto@kodexis.com' }}
+          # Project Pages: /kodexis-website/
+          # Dominio custom: define Variable VITE_BASE_PATH=/
+          VITE_BASE_PATH: ${{ vars.VITE_BASE_PATH }}
+          VITE_CONTACT_EMAIL: ${{ vars.VITE_CONTACT_EMAIL }}
           VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.VITE_WEB3FORMS_ACCESS_KEY }}
-        run: npm run build
+        run: |
+          export VITE_BASE_PATH="${VITE_BASE_PATH:-/kodexis-website/}"
+          export VITE_CONTACT_EMAIL="${VITE_CONTACT_EMAIL:-contacto@kodexis.com}"
+          echo "Building with VITE_BASE_PATH=$VITE_BASE_PATH"
+          npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
