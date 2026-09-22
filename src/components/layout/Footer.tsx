@@ -1,3 +1,4 @@
+import { CONTACT } from '../../data/content';
 import type { FooterProps } from '../../types';
 import { Logo } from '../ui/Logo';
 
@@ -15,19 +16,31 @@ export function Footer({ socialLinks }: FooterProps) {
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          {socialLinks.map(({ id, label, href, icon: Icon }) => (
-            <a
-              key={id}
-              href={href}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={label}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-line-light text-ink-secondary-light transition-colors hover:border-brand-500 hover:text-brand-500 dark:border-line-dark dark:text-ink-secondary-dark"
-            >
-              <Icon className="h-5 w-5" aria-hidden="true" />
-            </a>
-          ))}
+        <div className="flex flex-col items-start gap-3 sm:items-end">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-secondary-light dark:text-ink-secondary-dark">
+            Contáctanos
+          </p>
+          <div className="flex flex-wrap items-center gap-3">
+            {socialLinks.map(({ id, label, href, icon: Icon }) => (
+              <a
+                key={id}
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={label}
+                className="inline-flex items-center gap-2 rounded-xl border border-line-light px-3 py-2 text-sm text-ink-secondary-light transition-colors hover:border-brand-500 hover:text-brand-500 dark:border-line-dark dark:text-ink-secondary-dark"
+              >
+                <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span>
+                  {id === 'instagram'
+                    ? CONTACT.instagramHandle
+                    : id === 'whatsapp'
+                      ? CONTACT.whatsappDisplay
+                      : label}
+                </span>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 

@@ -5,8 +5,6 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# Requiere que en la org/repo Actions permita elevar permisos del GITHUB_TOKEN
-# (Settings → Actions → General → Workflow permissions → Read and write).
 permissions:
   contents: read
   pages: write
@@ -37,15 +35,19 @@ jobs:
 
       - name: Build
         env:
-          # Project Pages: /kodexis-website/
-          # Dominio custom: define Variable VITE_BASE_PATH=/
+          # Dominio custom kodexis.co → base "/".
+          # Override opcional vía Variable de repo (nunca Secrets aquí salvo la key de formulario).
           VITE_BASE_PATH: ${{ vars.VITE_BASE_PATH }}
           VITE_CONTACT_EMAIL: ${{ vars.VITE_CONTACT_EMAIL }}
+          # Secret: no se imprime en logs. Si está vacío, PQRS usa mailto.
           VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.VITE_WEB3FORMS_ACCESS_KEY }}
         run: |
-          export VITE_BASE_PATH="${VITE_BASE_PATH:-/kodexis-website/}"
-          export VITE_CONTACT_EMAIL="${VITE_CONTACT_EMAIL:-contacto@kodexis.com}"
-          echo "Building with VITE_BASE_PATH=$VITE_BASE_PATH"
+          set -euo pipefail
+          export VITE_BASE_PATH="${VITE_BASE_PATH:-/}"
+          export VITE_CONTACT_EMAIL="${VITE_CONTACT_EMAIL:-contacto@kodexis.co}"
+          echo "Building with VITE_BASE_PATH=${VITE_BASE_PATH}"
+          echo "VITE_CONTACT_EMAIL is set: $( [ -n "${VITE_CONTACT_EMAIL}" ] && echo yes || echo no )"
+          echo "WEB3FORMS secret present: $( [ -n "${VITE_WEB3FORMS_ACCESS_KEY:-}" ] && echo yes || echo no )"
           npm run build
 
       - name: Setup Pages

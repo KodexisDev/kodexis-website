@@ -34,8 +34,8 @@ jobs:
 
       - name: Typecheck y build
         env:
-          VITE_CONTACT_EMAIL: ${{ vars.VITE_CONTACT_EMAIL }}
           VITE_BASE_PATH: /
+          VITE_CONTACT_EMAIL: contacto@kodexis.co
         run: npm run build
 
       - name: Upload build artifact

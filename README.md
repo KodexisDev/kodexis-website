@@ -1,6 +1,6 @@
 # Kodexis · Landing Trazza
 
-Landing page de Kodexis para presentar **Trazza**, construida con React + Vite + TypeScript + Tailwind CSS.
+Landing page de Kodexis para presentar **Trazza** (`kodexis.co`).
 
 ## Scripts
 
@@ -12,64 +12,71 @@ npm run preview
 npm run lint
 ```
 
-## Variables de entorno
+## Seguridad (importante)
 
-Copia `.env.example` a `.env`:
+- **Nunca** commits de `.env`, claves, tokens ni `credentials*.json` (están en `.gitignore`).
+- Solo se versiona `.env.example` con placeholders.
+- En GitHub Actions:
+  - **Variables** (públicas / no sensibles): `VITE_CONTACT_EMAIL`, `VITE_BASE_PATH`
+  - **Secrets** (solo si usas Web3Forms): `VITE_WEB3FORMS_ACCESS_KEY`
+- Las variables `VITE_*` se **incrustan en el JS del navegador**. No uses ahí passwords, tokens de API privadas ni SMTP.
+- PQRS por defecto usa `mailto:` hacia el correo de contacto (sin secretos). Web3Forms es opcional y su key debe restringirse al dominio en el panel del proveedor.
 
-| Variable | Descripción |
-|----------|-------------|
-| `VITE_CONTACT_EMAIL` | Correo de recepción PQRS |
-| `VITE_WEB3FORMS_ACCESS_KEY` | (Opcional) envío PQRS por API |
-| `VITE_BASE_PATH` | Base de Vite (`/` con dominio custom) |
+## Variables locales
 
-En GitHub: **Settings → Secrets and variables → Actions**
+```bash
+cp .env.example .env
+```
 
-- Variables: `VITE_CONTACT_EMAIL`, `VITE_BASE_PATH` (opcional)
-- Secrets: `VITE_WEB3FORMS_ACCESS_KEY` (opcional)
+| Variable | ¿Dónde? | Descripción |
+|----------|---------|-------------|
+| `VITE_CONTACT_EMAIL` | Variable Actions / `.env` | Correo PQRS (`contacto@kodexis.co`) |
+| `VITE_BASE_PATH` | Variable Actions / `.env` | Debe ser `/` con dominio custom |
+| `VITE_WEB3FORMS_ACCESS_KEY` | **Solo Secret** Actions | Opcional; nunca en el repo |
+
+## Dominio: kodexis.co
+
+Ya está preparado en el repo (`public/CNAME` + `BASE_PATH=/`).
+
+### DNS (lo configura quien administra el dominio)
+
+| Tipo | Host | Valor |
+|------|------|--------|
+| `A` | `@` | `185.199.108.153` |
+| `A` | `@` | `185.199.109.153` |
+| `A` | `@` | `185.199.110.153` |
+| `A` | `@` | `185.199.111.153` |
+| `CNAME` | `www` | `kodexisdev.github.io` |
+
+1. Primero: verificar el email del registrante si el dominio está suspendido.
+2. Aplicar DNS arriba.
+3. En GitHub → **Settings → Pages** → Custom domain `kodexis.co` → **Enforce HTTPS**.
+4. Esperar propagación DNS (minutos a pocas horas).
+
+URLs:
+- Producción: https://kodexis.co
+- Mirror GitHub: https://kodexisdev.github.io/kodexis-website/
 
 ## CI/CD
 
 | Workflow | Trigger | Qué hace |
 |----------|---------|----------|
-| `CI` | push / PR | `npm ci`, lint, build |
-| `Deploy GitHub Pages` | push a `main` | build + deploy a Pages |
-
-### Requisitos del plan GitHub
-
-Para orgs en plan Free, **Actions y Pages en repos privados no están disponibles**.
-Esta landing debe ser **pública** (o la org necesita GitHub Team).
-
-### Activar GitHub Pages (una vez)
-
-1. Repo → **Settings → Pages**
-2. **Source**: GitHub Actions
-3. Tras el primer deploy en `main`, la URL queda en el environment `github-pages`
-   - Provisional: `https://kodexisdev.github.io/kodexis-website/`
-4. Con dominio custom, crea `public/CNAME` y configúralo en Settings → Pages
-
-### Dominio personalizado
-
-1. En el DNS del dominio, crea:
-   - `A` / `AAAA` a IPs de GitHub Pages, **o**
-   - `CNAME` `www` → `kodexisdev.github.io`
-2. En el repo crea `public/CNAME` con una línea: `tudominio.com`
-3. En **Settings → Pages → Custom domain** escribe el mismo dominio y activa HTTPS
-4. Mantén `VITE_BASE_PATH=/` (por defecto)
+| `CI` | push / PR | lint + build (sin secrets) |
+| `Deploy GitHub Pages` | push a `main` | build + deploy |
 
 ## Estructura
 
 ```text
 src/
-  components/
-    layout/     # Header, Footer, Layout
-    sections/   # Hero, Features, Waitlist, ProductDemo, Pqrs
-    ui/         # Button, FeatureCard, ThemeToggle, Input, Select, Logo…
-  contexts/     # ThemeProvider (light/dark)
-  config/       # Contacto / env
-  services/     # Envío PQRS
-  data/         # Contenido y assets
-  types/
+  components/   # layout, sections, ui
+  contexts/     # tema claro/oscuro
+  config/       # contacto
+  services/     # envío PQRS
+  data/         # contenido y assets
 .github/workflows/
   ci.yml
   deploy-pages.yml
+public/
+  CNAME         # kodexis.co
+  brand/        # logos y video
 ```

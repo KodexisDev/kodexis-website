@@ -1,4 +1,4 @@
-import { AtSign, CarFront, Globe, MapPin, Route, Share2, Users } from 'lucide-react';
+import { AtSign, CarFront, MapPin, MessageCircle, Route, Users } from 'lucide-react';
 import type { FeatureItem, NavLink, SocialLink } from '../types';
 
 export const NAV_LINKS: ReadonlyArray<NavLink> = [
@@ -40,23 +40,24 @@ export const FEATURES: ReadonlyArray<FeatureItem> = [
   },
 ];
 
+export const CONTACT = {
+  instagramUrl: 'https://www.instagram.com/trazza_col/',
+  instagramHandle: '@trazza_col',
+  whatsappDisplay: '+57 321 4226954',
+  whatsappUrl: 'https://wa.me/573214226954',
+} as const;
+
 export const SOCIAL_LINKS: ReadonlyArray<SocialLink> = [
   {
-    id: 'linkedin',
-    label: 'LinkedIn',
-    href: 'https://www.linkedin.com/',
-    icon: Globe,
-  },
-  {
     id: 'instagram',
-    label: 'Instagram',
-    href: 'https://www.instagram.com/',
+    label: 'Instagram @trazza_col',
+    href: CONTACT.instagramUrl,
     icon: AtSign,
   },
   {
-    id: 'facebook',
-    label: 'Facebook',
-    href: 'https://www.facebook.com/',
-    icon: Share2,
+    id: 'whatsapp',
+    label: `WhatsApp ${CONTACT.whatsappDisplay}`,
+    href: CONTACT.whatsappUrl,
+    icon: MessageCircle,
   },
 ];
